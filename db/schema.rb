@@ -10,20 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_000117) do
+ActiveRecord::Schema.define(version: 2020_11_03_220244) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.string "race"
-    t.string "class"
-    t.string "alignment"
-    t.string "background"
-    t.string "personality"
-    t.text "history"
-    t.string "photo_url"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "race"
+    t.string "class_lvl"
+    t.string "alignment"
+    t.string "background"
+    t.string "personality"
+    t.string "photo"
   end
 
   create_table "users", force: :cascade do |t|
