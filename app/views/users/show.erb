@@ -1,0 +1,10 @@
+<h1>This is the show page for <%= @user.name %>!</h1>
+<p>Email: <%= @user.email %> | ID (temp): <%= @user.id %>
+<ol>
+    <li><% @user.characters.each do |char|%>
+    <%= char.name%>
+    <% end %></li>
+</ol>
+</p>
+<a href="/logout">Log Out</a>
+
