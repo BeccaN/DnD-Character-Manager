@@ -14,16 +14,15 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    <div class="nav">
-
-    </div>
 
     <div class="wrapper">
-      <% if logged_in? %>
-        <a href="/users/<%= current_user.id %>">Main User Page</a>
-        <a href="/characters/new">New Character</a>
-        <a href="/logout">Logout</a>
-      <% end %>
+      <div class="nav">
+        <% if logged_in? %>
+          <a href="/users/<%= current_user.id %>">Main User Page</a>
+          <a href="/characters/new">New Character</a>
+          <a href="/logout">Logout</a>
+        <% end %>
+      </div>
 
         <%= yield %>
 

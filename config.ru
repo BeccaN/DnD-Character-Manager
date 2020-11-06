@@ -6,6 +6,7 @@ end
 
 'use Rack::MethodOverride'
 
-use CharactersController
 use UsersController
+use CharactersController
+
 run ApplicationController
