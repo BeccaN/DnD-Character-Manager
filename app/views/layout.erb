@@ -20,6 +20,7 @@
 
     <div class="wrapper">
       <% if logged_in? %>
+        <a href="/users/<%= current_user.id %>">Main User Page</a>
         <a href="/characters/new">New Character</a>
         <a href="/logout">Logout</a>
       <% end %>

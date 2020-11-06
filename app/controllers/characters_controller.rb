@@ -12,6 +12,7 @@ class CharactersController < ApplicationController
 
   # # POST: /characters
   post "/characters" do
+    #redirect to the new characters/:id page
     redirect "/characters"
   end
 
