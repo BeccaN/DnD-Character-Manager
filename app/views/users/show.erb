@@ -1,5 +1,5 @@
 <h1>This is the show page for <%= @user.name %>!</h1>
-<p>Email: <%= @user.email %> | ID (temp): <%= @user.id %>
+<p>Email: <%= @user.email %> | ID (temp): <%= @user.id %> | Number of Characters: <%= @user.characters.count%>
 <ul>
     <% @user.characters.each do |char|%>
     <li><a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a></li>
