@@ -1,36 +1,54 @@
 class CharactersController < ApplicationController
 
   get "/characters/new" do
-    erb :"/characters/new"
+    if logged_in? 
+      erb :"/characters/new"
+    else
+      flash[:error] = "You must be logged in to create a post!"
+      redirect "/"
+    end
   end
 
   post "/characters" do
-    #fix the params hash with class_lvl and remove the class_name and lvl_num
     params[:class_lvl] = params[:class_name] + " " + params[:lvl_num]
     params.delete("class_name")
     params.delete("lvl_num")
-    #create the character
-    @character = Character.create(params)
-    @character.user_id = current_user.id
-    @character.save
-    #redirect to the new characters/:id page
-    redirect "/characters/#{@character.id}"
+    character = Character.new(params)
+    character.user_id = current_user.id
+
+    if character.save 
+      flash[:message] = "Created a new character successfully!"
+      redirect "/characters/#{character.id}"
+    else
+      flash[:error] = "Character creation failed...Please make sure all fields are complete."
+      redirect "/characters/new"
+    end
   end
 
   get "/characters/:id" do
     @character = Character.find(params[:id])
-    erb :"/characters/show"
+    erb :"characters/show"
   end
 
   get "/characters/:id/edit" do
-    erb :"/characters/edit.html"
+    @character = Character.find(params[:id])
+    erb :"/characters/edit"
   end
 
   patch "/characters/:id" do
-    redirect "/characters/:id"
+    params[:class_lvl] = params[:class_name] + " " + params[:lvl_num]
+    params.delete("class_name")
+    params.delete("lvl_num")
+    @character = Character.find(params[:id])
+    @character.update(params)
+    redirect "/users/#{current_user.id}"
   end
 
   delete "/characters/:id/delete" do
+    @character = Character.find(params[:id])
+    character = Character.find(params[:id])
+    character.destroy
+    erb :show
     redirect "/characters"
   end
 end

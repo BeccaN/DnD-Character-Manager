@@ -5,17 +5,18 @@ class UsersController < ApplicationController
   end 
 
   post "/signup" do
-    if params[:name] == "" || params[:name].length < 5 || params[:name].include?(" ")
-      puts "username is no good"
-      redirect to "/failure"
-    elsif params[:password] == "" || params[:password].length < 6 || params[:password].include?(" ")
-      puts "password is no good"
-      redirect to "/failure"
-    elsif params[:email] == "" || !params[:email].match?(/(@.*com)$/) || params[:email].include?(" ")
-      puts 'email is no good!'
-      redirect to "/failure"
+    if params[:name].length < 5 || params[:name].include?(" ")
+      flash[:error] = "Username must be at least 6 characters long and can't include any spaces."
+      redirect to "/signup"
+    elsif params[:password].length < 5 || params[:password].include?(" ")
+      flash[:error] = "Password must be at least 6 characters long and can't include any spaces."
+      redirect to "/signup"
+    elsif !params[:email].match?(/(@.*com)$/) || params[:email].include?(" ")
+      flash[:error] = "Email must be a valid email and can't include any spaces."
+      redirect to "/signup"
     else
       User.create(:name => params[:name], :password => params[:password], :email => params[:email])
+      flash[:message] = "Successfully created an account, please login!"
       redirect to "/login"
     end
   end
@@ -28,9 +29,11 @@ class UsersController < ApplicationController
     user = User.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      flash[:message] = "Welcome back #{user.name}!"
       redirect to "/users/#{user.id}"
     else
-      redirect to "/failure"
+      flash[:error] = "The login credentials were incorrect. Please try again!"
+      redirect to "/login"
     end
   end
 
@@ -39,8 +42,7 @@ class UsersController < ApplicationController
     redirect "/"
   end
 
-  get "/users/:id" do
-    #if url id is not equal to current user id then auto redirect to current user id page 
+  get "/users/:id" do 
     if logged_in?
       @user = current_user
       erb :'users/show'
