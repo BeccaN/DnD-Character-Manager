@@ -6,17 +6,15 @@ class UsersController < ApplicationController
 
   post "/signup" do
     if params[:name].length < 5 || params[:name].include?(" ")
-      flash[:error] = "Username must be at least 6 characters long and can't include any spaces."
-      redirect to "/signup"
-    elsif params[:password].length < 5 || params[:password].include?(" ")
-      flash[:error] = "Password must be at least 6 characters long and can't include any spaces."
-      redirect to "/signup"
+      redirect to "/failure"
+    elsif params[:password].length < 6 || params[:password].include?(" ")
+      redirect to "/failure"
     elsif !params[:email].match?(/(@.*com)$/) || params[:email].include?(" ")
-      flash[:error] = "Email must be a valid email and can't include any spaces."
-      redirect to "/signup"
+      redirect to "/failure"
     else
-      User.create(:name => params[:name], :password => params[:password], :email => params[:email])
-      flash[:message] = "Successfully created an account, please login!"
+      @user = User.new(params)
+      @user.save
+      session[:user_id] = @user.id
       redirect to "/login"
     end
   end
@@ -29,11 +27,9 @@ class UsersController < ApplicationController
     user = User.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:message] = "Welcome back #{user.name}!"
       redirect to "/users/#{user.id}"
     else
-      flash[:error] = "The login credentials were incorrect. Please try again!"
-      redirect to "/login"
+      redirect to "/failure"
     end
   end
 

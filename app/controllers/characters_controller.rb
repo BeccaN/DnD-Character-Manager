@@ -1,33 +1,24 @@
 class CharactersController < ApplicationController
 
   get "/characters/new" do
-    if logged_in? 
-      erb :"/characters/new"
-    else
-      flash[:error] = "You must be logged in to create a post!"
-      redirect "/"
-    end
+    erb :"/characters/new"
   end
 
   post "/characters" do
     params[:class_lvl] = params[:class_name] + " " + params[:lvl_num]
     params.delete("class_name")
     params.delete("lvl_num")
-    character = Character.new(params)
-    character.user_id = current_user.id
-
-    if character.save 
-      flash[:message] = "Created a new character successfully!"
-      redirect "/characters/#{character.id}"
-    else
-      flash[:error] = "Character creation failed...Please make sure all fields are complete."
-      redirect "/characters/new"
-    end
+    
+    @character = Character.create(params)
+    @character.user_id = current_user.id
+    @character.save
+    
+    redirect "/characters/#{@character.id}"
   end
 
   get "/characters/:id" do
     @character = Character.find(params[:id])
-    erb :"characters/show"
+    erb :"/characters/show"
   end
 
   get "/characters/:id/edit" do
@@ -36,19 +27,19 @@ class CharactersController < ApplicationController
   end
 
   patch "/characters/:id" do
+    @character = Character.find(params[:id])
     params[:class_lvl] = params[:class_name] + " " + params[:lvl_num]
     params.delete("class_name")
     params.delete("lvl_num")
-    @character = Character.find(params[:id])
-    @character.update(params)
-    redirect "/users/#{current_user.id}"
+    @character.update(name: params[:name], race: params[:race], class_lvl: params[:class_lvl], alignment: params[:alignment], personality: params[:personality], photo: params[:photo])
+
+    redirect "/characters/#{@character.id}"
   end
 
-  delete "/characters/:id/delete" do
+  delete "/characters/:id" do
     @character = Character.find(params[:id])
-    character = Character.find(params[:id])
-    character.destroy
-    erb :show
-    redirect "/characters"
+    @character.destroy
+    redirect "/users/#{current_user.id}"
   end
+  
 end

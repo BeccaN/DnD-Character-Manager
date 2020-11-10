@@ -1,5 +1,6 @@
 <h1>Insert the form to create a new instance of your model.</h1>
 <form action="/characters" method="POST">
+    <label for="name">Character Name:</label>
     <input type="text" name="name" placeholder="Character Name">
     </br>
     <label for="race">Choose a Race:</label>
@@ -32,7 +33,7 @@
     </select>
     <input type="number" name="lvl_num" placeholder="Level" min="1" max="20">
     </br>
-    <label for="alignment">Alignment</label>
+    <label for="alignment">Alignment:</label>
     <select id="alignment" name="alignment">
         <option value="LE">Lawful Evil</option>
         <option value="LN">Lawful Neutral</option>
@@ -45,9 +46,12 @@
         <option value="CG">Chaotic Good</option>
     </select>
     </br>
+    <label for="personality">Personality:</label>
+    </br>
     <textarea id="personality" name="personality" rows="5" columns="50" maxlength="150">Max 150 characters</textarea>
     </br>
-    Photo URL (must be direct link to picture): <input type="text" name="photo">
+    <label for="photo">Photo URL (must be direct link to picture): </label>
+    <input type="text" name="photo">
     </br>
     <input type="submit" value="Submit">
 </form>

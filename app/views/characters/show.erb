@@ -1,21 +1,17 @@
-<h1>Character Show Page</h1>
-<h2><%= @character.user.name%>'s Character...</h2>
-<p>
-<h3><%= @character.name %></h3>
+<h1>This is the show page for an individual instance of your model.</h1>
+<h2><%= @character.name %></h2>
 <h3><%= @character.race %></h3>
 <h3><%= @character.class_lvl %></h3>
 <h3><%= @character.alignment %></h3>
 <h3><%= @character.personality %></h3>
 <h3><%= @character.photo %></h3>
 <h3><%= @character.user_id %></h3>
-</p>
 
 </br>
-<% if authorized_to_edit?(@character) %>
-    <a href="/characters/<%= @character.id %>/edit">Edit Character</a>
 
-    <form method="post" action="/characters/<%= @character.id %>">
-        <input id="hidden" type="hidden" name="_method" value="DELETE">
-        <input id='submit' type='submit' value='DELETE'>
-    </form>
-<% end %>
+<a href="/characters/<%= @character.id %>/edit">Edit Character</a>
+
+<form class="" action="/characters/<%= @character.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="" value="Delete Character">
+</form>
