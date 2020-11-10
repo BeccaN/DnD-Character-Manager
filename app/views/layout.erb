@@ -16,6 +16,15 @@
   <body>
 
     <div class="wrapper">
+
+      <% if flash[:error] %>
+        <h4 style="color: red; background: #ffb8b8; border-radius: 7px; padding: 7px;"><%= flash[:error] %></h4>
+      <% end %>
+
+      <% if flash[:message] %>
+        <h4 style="color: green; background: #96ff8c; border-radius: 7px; padding: 7px;"><%= flash[:message] %></h4>
+      <% end %>
+ 
       <div class="nav">
         <% if logged_in? %>
           <a href="/users/<%= current_user.id %>">Main User Page</a>

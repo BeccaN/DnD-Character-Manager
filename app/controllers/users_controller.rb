@@ -1,24 +1,5 @@
 class UsersController < ApplicationController
 
-  get "/signup" do
-    erb :'users/signup'
-  end 
-
-  post "/signup" do
-    if params[:name].length < 5 || params[:name].include?(" ")
-      redirect to "/failure"
-    elsif params[:password].length < 6 || params[:password].include?(" ")
-      redirect to "/failure"
-    elsif !params[:email].match?(/(@.*com)$/) || params[:email].include?(" ")
-      redirect to "/failure"
-    else
-      @user = User.new(params)
-      @user.save
-      session[:user_id] = @user.id
-      redirect to "/login"
-    end
-  end
-
   get "/login" do
     erb :'users/login'
   end
@@ -27,9 +8,11 @@ class UsersController < ApplicationController
     user = User.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to "/users/#{user.id}"
+      flash[:message] = "Welcome back #{user.name}!"
+      redirect "/users/#{user.id}"
     else
-      redirect to "/failure"
+      flash[:error] = "Login credentials were incorrect, please try again..."
+      redirect "/login"
     end
   end
 
@@ -40,10 +23,27 @@ class UsersController < ApplicationController
 
   get "/users/:id" do 
     if logged_in?
-      @user = current_user
+      @user = User.find(params[:id])
       erb :'users/show'
     else
-      redirect "/login"
+      flash[:error] = "Must be logged in to view a users page."
+      redirect "/"
+    end 
+  end
+
+  get "/signup" do
+    erb :'users/signup'
+  end 
+
+  post "/signup" do
+    @user = User.new(params)
+    if @user.save 
+      session[:user_id] = @user.id
+      flash[:message] = "Account creation successful! Please login with your account info!"
+      redirect to "/login"
+    else
+      flash[:error] = "Account creation failed: #{@user.errors.full_messages.to_sentence}."
+      redirect "/signup"
     end
   end
 

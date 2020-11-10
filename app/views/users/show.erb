@@ -1,9 +1,11 @@
-<h1>This is the show page for <%= @user.name %>!</h1>
-<p>Email: <%= @user.email %> | ID (temp): <%= @user.id %> | Number of Characters: <%= @user.characters.count%>
+<h1><%= @user.name %>'s Character Gallery</h1>
+<p>Email: <%= @user.email %> | Number of Characters: <%= @user.characters.count%>
 <ul>
     <% @user.characters.each do |char|%>
-    <li><a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a></li>
+    <li>
+    <h4><%= char.name %></h4>
+    <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a>
+    </li>
     <% end %>
 </ul>
 </p>
-

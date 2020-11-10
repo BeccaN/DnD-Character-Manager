@@ -9,9 +9,11 @@
 
 </br>
 
+<% if authorized_to_edit?(@character) %>
 <a href="/characters/<%= @character.id %>/edit">Edit Character</a>
 
 <form class="" action="/characters/<%= @character.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" name="" value="Delete Character">
 </form>
+<% end %>
