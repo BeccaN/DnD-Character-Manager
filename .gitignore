@@ -1,2 +1,2 @@
 .env
-seeds.rb
+db/seeds.rb
