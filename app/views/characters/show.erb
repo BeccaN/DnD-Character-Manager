@@ -1,19 +1,24 @@
-<h1>This is the show page for an individual instance of your model.</h1>
-<h2><%= @character.name %></h2>
-<h3><%= @character.race %></h3>
-<h3><%= @character.class_lvl %></h3>
-<h3><%= @character.alignment %></h3>
-<h3><%= @character.personality %></h3>
-<h3><%= @character.photo %></h3>
-<h3><%= @character.user_id %></h3>
+<head>
+    <h1><%= @character.name %>'s Page</h1>
+</head>
+<body>
+    <div>
+        <img src="<%= @character.photo %>" alt="<%= @character.name %>'s portrait" height="400">
+        <h3>Name: <%= @character.name %></h3>
+        <h3>Race: <%= @character.race %></h3>
+        <h3>Class: <%= @character.class_lvl %></h3>
+        <h3>Alignment: <%= @character.alignment %></h3>
+        <h3>Personality: <%= @character.personality %></h3>
+    </div>
+    </br>
+    <a href="/users/<%= @character.user.id %>"><%= @character.user.name %>'s Page</a>
+    </br></br>
+    <% if authorized_to_edit?(@character) %>
+    <a href="/characters/<%= @character.id %>/edit">Edit Character</a>
 
-</br>
-
-<% if authorized_to_edit?(@character) %>
-<a href="/characters/<%= @character.id %>/edit">Edit Character</a>
-
-<form class="" action="/characters/<%= @character.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" name="" value="Delete Character">
-</form>
-<% end %>
+    <form class="" action="/characters/<%= @character.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" name="" value="Delete Character">
+    </form>
+    <% end %>
+</body>

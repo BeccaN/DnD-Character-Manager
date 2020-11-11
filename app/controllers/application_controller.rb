@@ -31,7 +31,6 @@ class ApplicationController < Sinatra::Base
     def authorized_to_edit?(character)
       character.user == current_user
     end
-
   end
 
 end

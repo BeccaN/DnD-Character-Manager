@@ -1,10 +1,14 @@
-<h1>Edit Character!</h1>
+<head>
+    <h1>Edit Character Details</h1>
+</head>
+<body>
+<p style="color: red;">Make sure to complete all fields, including your changes to edit the character.</p>
 <form class="" action="/characters/<%= @character.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
 
     <label for="name">Character Name:</label>
     <input type="text" name="name" value="<%= @character.name %>">
-    </br>
+    </br></br>
     <label for="race">Choose a Race:</label>
     <select id="race" name="race">
         <option value="dragonborn">Dragonborn</option>
@@ -17,7 +21,7 @@
         <option value="human">Human</option>
         <option value="tiefling">Tiefling</option>
     </select>
-    </br>
+    </br></br>
     <label for="class_name">Choose a Class:</label>
     <select id="class_name" name="class_name">
         <option value="barbarian">Barbarian</option>
@@ -34,7 +38,7 @@
         <option value="wizard">Wizard</option>
     </select>
     <input type="number" name="lvl_num" placeholder="Level" min="1" max="20">
-    </br>
+    </br></br>
     <label for="alignment">Alignment:</label>
     <select id="alignment" name="alignment">
         <option value="LE">Lawful Evil</option>
@@ -47,14 +51,14 @@
         <option value="CN">Chaotic Neutral</option>
         <option value="CG">Chaotic Good</option>
     </select>
-    </br>
+    </br></br>
     <label for="personality">Personality:</label>
     </br>
     <textarea id="personality" name="personality" rows="5" columns="50" maxlength="150"><%= @character.personality %></textarea>
-    </br>
+    </br></br>
     <label for="photo">Photo URL (must be direct link to picture): </label>
     <input type="text" name="photo" value="<%= @character.photo %>">
-    </br>
-    
+    </br></br>
     <input type="submit" name="" value="Save Changes">
 </form>
+</body>

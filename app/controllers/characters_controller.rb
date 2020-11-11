@@ -4,6 +4,11 @@ class CharactersController < ApplicationController
   # @characters = Character.all
   # erb :'characters/index'
 
+  get "/characters" do 
+    @characters = Character.all
+    erb :"/characters/index"
+  end
+
   get "/characters/new" do
     if logged_in?
       erb :"/characters/new"

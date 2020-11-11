@@ -1,0 +1,13 @@
+<head>
+<h1>Character Gallery</h1>
+</head>
+<body>
+<ul>
+    <% @characters.each do |char|%>
+    <li>
+    <h4>'<%= char.name %>' - <%= char.user.name %></h4>
+    <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a>
+    </li>
+    <% end %>
+</ul>
+</body>

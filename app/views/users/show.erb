@@ -1,11 +1,15 @@
-<h1><%= @user.name %>'s Character Gallery</h1>
-<p>Email: <%= @user.email %> | Number of Characters: <%= @user.characters.count%>
-<ul>
-    <% @user.characters.each do |char|%>
-    <li>
-    <h4><%= char.name %></h4>
-    <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a>
-    </li>
-    <% end %>
-</ul>
-</p>
+<head>
+<h1><%= @user.name %>'s User Page</h1>
+</head>
+<body>
+    <p>Number of Characters: <%= @user.characters.count%></p>
+    
+    <ul>
+        <% @user.characters.each do |char|%>
+        <li>
+        <h4><%= char.name %></h4>
+        <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a>
+        </li>
+        <% end %>
+    </ul>
+</body>
