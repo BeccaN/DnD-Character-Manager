@@ -1,9 +1,5 @@
 class CharactersController < ApplicationController
 
-  #create an all characters gallery route
-  # @characters = Character.all
-  # erb :'characters/index'
-
   get "/characters" do 
     @characters = Character.all
     erb :"/characters/index"
@@ -49,19 +45,19 @@ class CharactersController < ApplicationController
   end
 
   patch "/characters/:id" do
-    @character = Character.find(params[:id])
+    character = Character.find(params[:id])
     params[:class_lvl] = params[:class_name] + " " + params[:lvl_num]
     params.delete("class_name")
     params.delete("lvl_num")
-    @character.update(name: params[:name], race: params[:race], class_lvl: params[:class_lvl], alignment: params[:alignment], personality: params[:personality], photo: params[:photo])
+    character.update(name: params[:name], race: params[:race], class_lvl: params[:class_lvl], alignment: params[:alignment], personality: params[:personality], photo: params[:photo])
     
     flash[:message] = "Character update was successful!"
-    redirect "/characters/#{@character.id}"
+    redirect "/characters/#{character.id}"
   end
 
   delete "/characters/:id" do
-    @character = Character.find(params[:id])
-    @character.destroy
+    character = Character.find(params[:id])
+    character.destroy
 
     flash[:message] = "Character was deleted."
     redirect "/users/#{current_user.id}"

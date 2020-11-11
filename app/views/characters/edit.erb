@@ -1,7 +1,6 @@
-<head>
-    <h1>Edit Character Details</h1>
-</head>
-<body>
+<h1>Edit Character Details</h1>
+
+<div>
 <p style="color: red;">Make sure to complete all fields, including your changes to edit the character.</p>
 <form class="" action="/characters/<%= @character.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
@@ -61,4 +60,4 @@
     </br></br>
     <input type="submit" name="" value="Save Changes">
 </form>
-</body>
+</div>
