@@ -6,9 +6,13 @@ This Sinatra based CRUD/MVC model application allows users to track and manage t
 
 1. Clone the repository and open locally
 2. Open terminal and install the dependencies
+```console
     $ bundle install
+```
 3. Startup a shotgun host
+```console
     $ shotgun
+```
 4. Open server (localhost:9393)
 5. Create an account and start making characters!
 
