@@ -9,12 +9,13 @@ This Sinatra based CRUD/MVC model application allows users to track and manage t
 ```console
     $ bundle install
 ```
-3. Startup a shotgun host
+3. Make sure to provide a environment variable for the session secret in the ApplicationController
+4. Startup a shotgun host
 ```console
     $ shotgun
 ```
 4. Open server (localhost:9393)
-5. Create an account and start making characters!
+6. Create an account and start making characters!
 
 ##Contributing Guide
 - Fork the repository and mess around!
