@@ -18,7 +18,10 @@ This Sinatra based CRUD/MVC model application allows users to track and manage t
 ```console
     $ shotgun
 ```
-6. Open server (localhost:9393)
+6. Start shotgun server and paste the localhost shotgun is listening on
+```console
+    $shotgun
+```
 7. Create an account and start making characters!
 
 ##Contributing Guide
