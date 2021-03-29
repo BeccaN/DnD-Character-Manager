@@ -28,9 +28,17 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
-    def authorized_to_edit?(character)
-      character.user == current_user
+    def authorized_to_edit?(record)
+      record.user == current_user
     end
+
+    def redirect_to_login? 
+      if !logged_in?
+        flash[:error] = "You must be logged in to view that page..."
+        redirect :"/"
+      end
+    end
+
   end
 
 end
