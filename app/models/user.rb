@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
         message: "must include '@' symbol and end with '.com'" }
     validates :name, :email, :password, format: { without: /\s/, 
         message: "can't include any spaces"}
+    validates :email, uniqueness: true
 end
