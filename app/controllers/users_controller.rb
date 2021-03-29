@@ -22,13 +22,10 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do 
-    if logged_in?
-      @user = User.find(params[:id])
-      erb :'users/show'
-    else
-      flash[:error] = "Must be logged in to view a users page."
-      redirect "/"
-    end 
+    redirect_to_login?
+
+    @user = User.find(params[:id])
+    erb :'users/show'
   end
 
   get "/signup" do
