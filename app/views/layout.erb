@@ -11,22 +11,20 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <link rel="stylesheet" text="text/css" href="/stylesheets/main.css?version=1">
   </head>
   <body>
 
     <div class="wrapper">
-
-      
-      
+      <h1 class="banner">D&D Character Manager</h1>
       </br>
 
       <div class="nav">
         <% if logged_in? %>
-          <a href="/users/<%= current_user.id %>">User Page</a>
-          <a href="/characters">Characters Gallery</a>
-          <a href="/characters/new">New Character</a>
-          <a href="/logout">Logout</a>
+          <a href="/users/<%= current_user.id %>"><%= current_user.name %></a> | 
+          <a href="/characters">Gallery</a> | 
+          <a href="/characters/new">Create</a>
+          <a href="/logout" style="float:right;">Logout</a>
         <% end %>
       </div>
 

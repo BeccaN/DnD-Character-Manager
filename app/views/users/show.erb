@@ -1,13 +1,18 @@
-<h1><%= @user.name %>'s User Page</h1>
 <div>
-    <p>Number of Characters: <%= @user.characters.count%></p>
-    
-    <ul>
+    <h1 class="title"><%= @user.name %>'s Characters</h1>
+    <p class="numChars">Number of Characters: <%= @user.characters.count%></p>
+    <br />
+    <% if @user.characters.count === 0 %>
+    <div class="message">
+        <a href="/characters/new" class="spc-btn">Build your first character!</a>
+    </div>
+    <% end %>
+
+    <div class="gallery-container">
         <% @user.characters.each do |char|%>
-        <li>
-        <h4><%= char.name %></h4>
-        <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a>
-        </li>
+            <div class="char-card">
+                <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" class="char-photo"></a>
+            </div>
         <% end %>
-    </ul>
+    </div>
 </div>
