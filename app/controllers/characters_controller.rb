@@ -59,7 +59,7 @@ class CharactersController < ApplicationController
 
   delete "/characters/:id" do
     set_character
-    character.destroy
+    @character.destroy
 
     flash[:message] = "Character was deleted."
     redirect "/users/#{current_user.id}"

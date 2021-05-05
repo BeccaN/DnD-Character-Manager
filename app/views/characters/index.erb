@@ -1,11 +1,9 @@
-<h1>Character Gallery</h1>
-<div>
-<ul>
+<h1 style="text-align: center;">Character Gallery</h1>
+<div class="gallery-container">
     <% @characters.each do |char|%>
-    <li>
-    <h4>'<%= char.name %>' - <%= char.user.name %></h4>
-    <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" height="200"></a>
-    </li>
+        <div class="char-card">
+            <a href="/characters/<%= char.id %>"><img src="<%= char.photo %>" alt="Character Portrait" class="char-photo"></a>
+            <h4>'<%= char.name %>' by <%= char.user.name %></h4>
+        </div>
     <% end %>
-</ul>
 </div>
