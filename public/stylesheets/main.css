@@ -138,12 +138,6 @@ h2 {
   display: inline-block;
 }
 
-.numChars {
-  display: inline-block;
-  position: absolute;
-  right: 475px;
-}
-
 .message {
   text-align: center;
   padding: 25px;

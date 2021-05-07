@@ -1,6 +1,6 @@
 <div>
     <h1 class="title"><%= @user.name %>'s Characters</h1>
-    <p class="numChars">Number of Characters: <%= @user.characters.count%></p>
+    <p>Number of Characters: <%= @user.characters.count%></p>
     <br />
     <% if @user.characters.count === 0 %>
     <div class="message">
