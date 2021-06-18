@@ -14,15 +14,11 @@ This Sinatra based CRUD/MVC model application allows users to track and manage t
 ```console
     $ rake db:migrate
 ```
-5. Startup a shotgun host
+5. Startup shotgun
 ```console
     $ shotgun
 ```
-6. Start shotgun server and paste the localhost shotgun is listening on
-```console
-    $shotgun
-```
-7. Create an account and start making characters!
+6. Open DnDCharacterManager and get started!
 
 ##Contributing Guide
 - Fork the repository and mess around!

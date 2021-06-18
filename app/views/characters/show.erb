@@ -1,25 +1,35 @@
-<h1><%= @character.name %>'s Page</h1>
 <div>
-    <p>
-        <img src="<%= @character.photo %>" alt="<%= @character.name %>'s portrait" height="400">
-        <h3>Name: <%= @character.name %></h3>
-        <h3>Race: <%= @character.race %></h3>
-        <h3>Class: <%= @character.class_lvl %></h3>
-        <h3>Alignment: <%= @character.alignment %></h3>
-        <h3>Personality: <%= @character.personality %></h3>
-        </br>
-        <p>Created On: <%= @character.created_at.strftime("%B %d, %Y") %> | Last Update On: <%= @character.updated_at.strftime("%B %d, %Y") %> </p>
-        
-    </p>
-    </br>
-    <a href="/users/<%= @character.user.id %>"><%= @character.user.name %>'s Page</a>
-    </br></br>
-    <% if authorized_to_edit?(@character) %>
-    <a href="/characters/<%= @character.id %>/edit">Edit Character</a>
+    <h1><%= @character.name %>'s Page</h1>
 
-    <form class="" action="/characters/<%= @character.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" name="" value="Delete Character">
-    </form>
-    <% end %>
+    <div class="char-details">
+        <div>
+            <img src="<%= @character.photo %>" alt="<%= @character.name %>'s portrait" height="400" class="char-show-photo">
+        </div>
+        <div>
+            <p><strong>Name:</strong> <%= @character.name %></p>
+            <p><strong>Race:</strong> <%= @character.race %></p>
+            <p><strong>Class:</strong> <%= @character.class_lvl %></p>
+            <p><strong>Alignment:</strong> <%= @character.alignment %></p>
+            <p><strong>Background:</strong> <%= @character.personality %></p>
+        </div>
+    </div>
+
+    <div>
+        <small>Created On: <%= @character.created_at.strftime("%B %d, %Y") %> | Last Update On: <%= @character.updated_at.strftime("%B %d, %Y") %></small>
+    </div>
+
+    <div class="char-btns">
+        
+        <a href="/users/<%= @character.user.id %>" class="spc-btn char-show-photo"><%= @character.user.name %>'s Page</a>
+        
+        <% if authorized_to_edit?(@character) %>
+            <a href="/characters/<%= @character.id %>/edit" class="spc-btn char-show-photo">Edit</a>
+
+            <form class="" action="/characters/<%= @character.id %>" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" name="" value="Delete" class="spc-btn char-show-photo">
+            </form>
+        <% end %>
+
+    </div>
 </div>

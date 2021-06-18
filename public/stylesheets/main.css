@@ -120,8 +120,8 @@ h2 {
 }
 
 .spc-btn {
-  width: 100px;
-  height: 30px;
+  /* width: auto; */
+  /* height: 30px; */
   padding: 10px;
   border: none;
   font-family: Lucida Console;
@@ -161,9 +161,23 @@ h2 {
   transition: 0.3s;
 }
 
-.char-photo{
+.char-photo {
   display: block;
   width: 100%;
   height: auto;
   padding: 5px;
+}
+
+.char-details {
+  display: flex;
+}
+
+.char-show-photo {
+  margin-right: 30px;
+}
+
+.char-btns {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
