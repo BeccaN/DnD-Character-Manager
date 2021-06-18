@@ -2,6 +2,8 @@
 
 This Sinatra based CRUD/MVC model application allows users to track and manage their D&D characters. Users can also view other users characters to help get inspired for their next D&D character!
 
+[Demo Guide](https://www.youtube.com/watch?v=Z5tr9ocDMLM)
+
 ##Installation Instructions
 
 1. Clone the repository and open locally
