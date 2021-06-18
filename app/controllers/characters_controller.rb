@@ -51,10 +51,10 @@ class CharactersController < ApplicationController
     params[:class_lvl] = params[:class_name] + " " + params[:lvl_num]
     params.delete("class_name")
     params.delete("lvl_num")
-    character.update(name: params[:name], race: params[:race], class_lvl: params[:class_lvl], alignment: params[:alignment], personality: params[:personality], photo: params[:photo])
+    @character.update(name: params[:name], race: params[:race], class_lvl: params[:class_lvl], alignment: params[:alignment], personality: params[:personality], photo: params[:photo])
     
     flash[:message] = "Character update was successful!"
-    redirect "/characters/#{character.id}"
+    redirect "/characters/#{@character.id}"
   end
 
   delete "/characters/:id" do
